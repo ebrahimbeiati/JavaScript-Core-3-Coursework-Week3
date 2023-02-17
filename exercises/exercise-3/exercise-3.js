@@ -6,3 +6,23 @@ let order = [
   { itemName: "Hot Coffee", quantity: 2, unitPrice: 1.0 },
   { itemName: "Hash Brown", quantity: 4, unitPrice: 0.4 },
 ];
+
+
+let maxItemNameLength = 0;
+for (const { itemName } of order) {
+  maxItemNameLength = Math.max(maxItemNameLength, itemName.length);
+}
+
+let totalCost = 0;
+console.log("QTY\tITEM" + " ".repeat(maxItemNameLength - 4) + "\tTOTAL");
+for (const { itemName, quantity, unitPrice } of order) {
+  const itemTotal = quantity * unitPrice;
+  console.log(
+    `${quantity}\t${itemName}${" ".repeat(
+      maxItemNameLength - itemName.length
+    )}\t${itemTotal.toFixed(2)}`
+  );
+  totalCost += itemTotal;
+}
+
+console.log(`Total: ${totalCost.toFixed(2)}`);
